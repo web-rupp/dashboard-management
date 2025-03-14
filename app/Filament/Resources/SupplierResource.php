@@ -76,6 +76,7 @@ class SupplierResource extends Resource
                 Tables\Filters\SelectFilter::make('country'),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
             ])
