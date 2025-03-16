@@ -24,18 +24,21 @@ class ShipperResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('company_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('website')
-                    ->url()
-                    ->maxLength(255),
+                Forms\Components\Section::make('Create Shipper')
+                    ->schema([
+                        Forms\Components\TextInput::make('company_name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('phone')
+                            ->tel()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('website')
+                            ->url()
+                            ->maxLength(255),
+                    ])->columns(2)
             ]);
     }
 

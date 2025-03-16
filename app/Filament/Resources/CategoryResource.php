@@ -10,6 +10,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -17,6 +18,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
+use PHPUnit\Framework\TestStatus\Notice;
 
 class CategoryResource extends Resource
 {
@@ -45,7 +47,7 @@ class CategoryResource extends Resource
                         Forms\Components\Toggle::make('is_active')
                             ->required()
                             ->default(true),
-                    ])
+                    ])->columns(2)
             ]);
     }
 
@@ -73,8 +75,14 @@ class CategoryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('Category deleted.')
+                            ->body('The Category deleted successfully.')
+                    )
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

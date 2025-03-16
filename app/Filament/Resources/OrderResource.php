@@ -23,35 +23,42 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('customer_id')
-                    ->relationship('customer', 'last_name')
-                    ->searchable(['first_name', 'last_name', 'email'])
-                    ->getOptionLabelFromRecordUsing(fn($record) => "{$record->first_name} {$record->last_name}")
-                    ->required(),
-                Forms\Components\Select::make('employee_id')
-                    ->relationship('employee', 'last_name')
-                    ->searchable(['first_name', 'last_name'])
-                    ->getOptionLabelFromRecordUsing(fn($record) => "{$record->first_name} {$record->last_name}"),
-                Forms\Components\DateTimePicker::make('order_date')
-                    ->required()
-                    ->default(now()),
-                Forms\Components\DateTimePicker::make('shipped_date'),
-                Forms\Components\Select::make('shipper_id')
-                    ->relationship('shipper', 'company_name'),
-                Forms\Components\Select::make('status')
-                    ->options([
-                        'pending' => 'Pending',
-                        'processing' => 'Processing',
-                        'shipped' => 'Shipped',
-                        'delivered' => 'Delivered',
-                        'cancelled' => 'Cancelled',
-                    ])
-                    ->default('pending')
-                    ->required(),
-                Forms\Components\TextInput::make('total_amount')
-                    ->numeric()
-                    ->prefix('$')
-                    ->default(0),
+                Forms\Components\Section::make('Create Order')
+                    ->schema([
+                        Forms\Components\Select::make('customer_id')
+                            ->relationship('customer', 'email')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('employee_id')
+                            ->relationship('employee', 'email')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\DateTimePicker::make('order_date')
+                            ->required()
+                            ->default(now()),
+                        Forms\Components\DateTimePicker::make('shipped_date'),
+                        Forms\Components\Select::make('shipper_id')
+                            ->relationship('shipper', 'company_name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('status')
+                            ->options([
+                                'pending' => 'Pending',
+                                'processing' => 'Processing',
+                                'shipped' => 'Shipped',
+                                'delivered' => 'Delivered',
+                                'cancelled' => 'Cancelled',
+                            ])
+                            ->default('pending')
+                            ->required(),
+                        Forms\Components\TextInput::make('total_amount')
+                            ->numeric()
+                            ->prefix('$')
+                            ->default(0),
+                    ])->columns(2)
             ]);
     }
 

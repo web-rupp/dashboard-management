@@ -7,6 +7,7 @@ use App\Filament\Resources\CustomerResource\RelationManagers;
 use App\Models\Customer;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,30 +25,33 @@ class CustomerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('first_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('last_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(Customer::class, 'email', ignoreRecord: true),
-                Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('address')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('city')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('state')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('postal_code')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('country')
-                    ->maxLength(255),
+                Forms\Components\Section::make('Information Customer')
+                    ->schema([
+                        Forms\Components\TextInput::make('first_name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('last_name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(Customer::class, 'email', ignoreRecord: true),
+                        Forms\Components\TextInput::make('phone')
+                            ->tel()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('address')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('city')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('state')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('postal_code')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('country')
+                            ->maxLength(255),
+                    ])->columns(2)
             ]);
     }
 
@@ -78,7 +82,13 @@ class CustomerResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                ->successNotification(
+                    Notification::make()
+                    ->success()
+                    ->title('Customer deleted.')
+                    ->body('The Customer deleted successfully.')
+                )
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

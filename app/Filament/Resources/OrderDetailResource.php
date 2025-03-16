@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrderDetailResource\Pages;
 use App\Filament\Resources\OrderDetailResource\RelationManagers;
 use App\Models\OrderDetail;
+use Doctrine\DBAL\Schema\Schema;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -22,25 +23,32 @@ class OrderDetailResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('order_id')
-                    ->relationship('order', 'id')
-                    ->required(),
-                Forms\Components\Select::make('product_id')
-                    ->relationship('product', 'name')
-                    ->required(),
-                Forms\Components\TextInput::make('unit_price')
-                    ->required()
-                    ->numeric()
-                    ->prefix('$')
-                    ->maxValue(42949672.95),
-                Forms\Components\TextInput::make('quantity')
-                    ->required()
-                    ->numeric()
-                    ->minValue(1),
-                Forms\Components\TextInput::make('discount')
-                    ->numeric()
-                    ->prefix('$')
-                    ->maxValue(42949672.95),
+                Forms\Components\Section::make('Create order details')
+                    ->schema([
+                        Forms\Components\Select::make('order_id')
+                            ->relationship('order', 'id')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('product_id')
+                            ->relationship('product', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\TextInput::make('unit_price')
+                            ->required()
+                            ->numeric()
+                            ->prefix('$')
+                            ->maxValue(42949672.95),
+                        Forms\Components\TextInput::make('quantity')
+                            ->required()
+                            ->numeric()
+                            ->minValue(1),
+                        Forms\Components\TextInput::make('discount')
+                            ->numeric()
+                            ->prefix('$')
+                            ->maxValue(42949672.95),
+                    ])->columns(2)
             ]);
     }
 

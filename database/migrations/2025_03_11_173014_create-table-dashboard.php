@@ -80,8 +80,6 @@ return new class extends Migration
             $table->string('quantity_per_unit')->nullable();
             $table->integer('units_in_stock')->default(0);
             $table->integer('units_on_order')->default(0);
-            $table->integer('reorder_level')->default(0);
-            $table->boolean('is_discontinued')->default(false);
             $table->timestamps();
         });
 

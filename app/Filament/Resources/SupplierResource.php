@@ -6,6 +6,7 @@ use App\Filament\Resources\SupplierResource\Pages;
 use App\Filament\Resources\SupplierResource\RelationManagers;
 use App\Models\Supplier;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,30 +25,33 @@ class SupplierResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('company_name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('contact_name')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('address')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('city')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('region')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('postal_code')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('country')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('website')
-                    ->url()
-                    ->maxLength(255),
+                Forms\Components\Section::make('Create Supplier')
+                    ->schema([
+                        Forms\Components\TextInput::make('company_name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('contact_name')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('address')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('city')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make(name: 'region')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('postal_code')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('country')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('phone')
+                            ->tel()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('website')
+                            ->url()
+                            ->maxLength(255),
+                    ])->columns(2)
             ]);
     }
 

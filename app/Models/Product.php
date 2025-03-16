@@ -20,16 +20,12 @@ class Product extends Model
         'quantity_per_unit',
         'units_in_stock',
         'units_on_order',
-        'reorder_level',
-        'is_discontinued',
     ];
 
     protected $casts = [
         'unit_price' => 'decimal:2',
         'units_in_stock' => 'integer',
         'units_on_order' => 'integer',
-        'reorder_level' => 'integer',
-        'is_discontinued' => 'boolean',
     ];
 
     public function supplier(): BelongsTo

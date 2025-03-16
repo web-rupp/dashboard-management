@@ -24,38 +24,38 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('supplier_id')
-                    ->relationship('supplier', 'company_name')
-                    ->required()
-                    ->searchable(),
-                Forms\Components\Textarea::make('description')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('unit_price')
-                    ->required()
-                    ->numeric()
-                    ->prefix('$'),
-                Forms\Components\TextInput::make('quantity_per_unit')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('units_in_stock')
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\TextInput::make('units_on_order')
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\TextInput::make('reorder_level')
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\Toggle::make('is_discontinued')
-                    ->required()
-                    ->default(false),
-                Forms\Components\CheckboxList::make('categories')
-                    ->relationship('categories', 'name')
-                    ->columns(2)
-                    ->helperText('Select the categories this product belongs to'),
+                Forms\Components\Section::make('Create product')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Select::make('supplier_id')
+                            ->relationship('supplier', 'company_name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('categories')
+                            ->relationship('categories', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\TextInput::make('Quantity')
+                            ->numeric()
+                            ->required(),
+                        Forms\Components\TextInput::make('unit_price')
+                            ->required()
+                            ->numeric()
+                            ->prefix('$'),
+                        Forms\Components\TextInput::make('units_in_stock')
+                            ->numeric()
+                            ->default(0),
+                        Forms\Components\TextInput::make('units_on_order')
+                            ->numeric()
+                            ->default(0),
+                        Forms\Components\Textarea::make('description')
+                            ->maxLength(65535)
+                            ->columnSpanFull(),
+                    ])->columns(2)
             ]);
     }
 
@@ -76,8 +76,6 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('units_on_order')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('is_discontinued')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
