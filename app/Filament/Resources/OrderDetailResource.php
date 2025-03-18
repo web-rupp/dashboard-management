@@ -19,6 +19,10 @@ class OrderDetailResource extends Resource
     protected static ?string $model = OrderDetail::class;
     protected static ?string $navigationIcon = 'heroicon-o-receipt-percent';
     protected static ?string $navigationGroup = 'Sales';
+    public static function getNavigationBadge(): ?string
+{
+    return OrderDetail::count();
+}
     public static function form(Form $form): Form
     {
         return $form

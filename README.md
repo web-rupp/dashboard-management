@@ -64,3 +64,18 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+## Starting and Stopping MySQL
+
+To start and stop MySQL on your system, use the following commands based on your operating system.
+
+
+- **Start MySQL**:
+  ```bash ```
+     brew services start mysql
+
+
+- **Start MySQL**:   
+brew services stop mysql

@@ -3,21 +3,23 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
-use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationGroup = 'Sales';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return Order::count();
+    }
 
     public static function form(Form $form): Form
     {
@@ -66,18 +68,12 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('customer.name')
                     ->getStateUsing(fn(Order $record): string => "{$record->customer->first_name} {$record->customer->last_name}")
                     ->searchable(['customer.first_name', 'customer.last_name']),
-                Tables\Columns\TextColumn::make('order_date')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('shipped_date')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(),
+                Tables\Columns\TextColumn::make('order_date')->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('shipped_date')->dateTime()->sortable()->toggleable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
@@ -87,9 +83,7 @@ class OrderResource extends Resource
                         'delivered' => 'success',
                         'cancelled' => 'danger',
                     }),
-                Tables\Columns\TextColumn::make('total_amount')
-                    ->money('USD')
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('total_amount')->money('USD')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -115,13 +109,6 @@ class OrderResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            RelationManagers\OrderDetailsRelationManager::class,
-        ];
     }
 
     public static function getPages(): array
