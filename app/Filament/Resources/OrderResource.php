@@ -7,6 +7,7 @@ use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -18,7 +19,10 @@ class OrderResource extends Resource
     protected static ?string $model = Order::class;
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationGroup = 'Sales';
-
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
     public static function form(Form $form): Form
     {
         return $form
@@ -36,9 +40,13 @@ class OrderResource extends Resource
                             ->preload()
                             ->required(),
                         Forms\Components\DateTimePicker::make('order_date')
-                            ->required()
-                            ->default(now()),
-                        Forms\Components\DateTimePicker::make('shipped_date'),
+                            ->native(false)
+                            ->displayFormat('d/m/y h:i:s')
+                            ->required(),
+                        Forms\Components\DateTimePicker::make('shipped_date')
+                            ->native(false)
+                            ->displayFormat('d/m/y h:i:s')
+                            ->required(),
                         Forms\Components\Select::make('shipper_id')
                             ->relationship('shipper', 'company_name')
                             ->searchable()
@@ -108,7 +116,13 @@ class OrderResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('Order deleted.')
+                            ->body('The Order deleted successfully.')
+                    ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -20,6 +20,10 @@ class CustomerResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $navigationGroup = 'Shop Management';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
@@ -83,12 +87,12 @@ class CustomerResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                ->successNotification(
-                    Notification::make()
-                    ->success()
-                    ->title('Customer deleted.')
-                    ->body('The Customer deleted successfully.')
-                )
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('Customer deleted.')
+                            ->body('The Customer deleted successfully.')
+                    )
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
