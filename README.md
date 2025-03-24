@@ -15,8 +15,8 @@ This project is a dashboard management system built using Laravel with Filament.
 Clone the project from your version control system:
 
 ```bash
-git clone https://github.com/yourusername/project-dashboard.git
-cd project-dashboard
+https://github.com/web-rupp/dashboard-management.git
+cd dashboard-management
 ```
 
 #### 2. Set up environment file
