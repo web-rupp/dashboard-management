@@ -38,9 +38,10 @@ class User extends Authenticatable implements FilamentUser, HasName
         // return $this->is_admin === 1;
     }
 
+    // create a new panel object
     public function canAccessFilament(): bool
     {
-        $panel = new Panel(); // Create a new Panel object
+        $panel = new Panel();
         return $this->canAccessPanel($panel);
     }
 

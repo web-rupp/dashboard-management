@@ -4,7 +4,6 @@ namespace App\Filament\Pages\Auth;
 
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Forms\Components\TextInput;
-// use Filament\Forms\Components\PasswordInput;
 
 class Register extends BaseRegister
 {
