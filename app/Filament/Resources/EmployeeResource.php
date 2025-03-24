@@ -20,6 +20,10 @@ class EmployeeResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'Staff Management';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
     public static function form(Form $form): Form
     {
         return $form
@@ -39,6 +43,8 @@ class EmployeeResource extends Resource
                     ->tel()
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('hire_date')
+                    ->native(false)
+                    ->displayFormat('d/m/y')
                     ->required(),
                 Forms\Components\TextInput::make('position')
                     ->required()
@@ -77,12 +83,12 @@ class EmployeeResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                ->successNotification(
-                    Notification::make()
-                    ->success()
-                    ->title('Employee deleted.')
-                    ->body('The Employee deleted successfully.')
-                )
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('Employee deleted.')
+                            ->body('The Employee deleted successfully.')
+                    )
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

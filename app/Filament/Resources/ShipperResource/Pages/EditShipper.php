@@ -4,6 +4,7 @@ namespace App\Filament\Resources\ShipperResource\Pages;
 
 use App\Filament\Resources\ShipperResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 
 class EditShipper extends EditRecord
@@ -15,5 +16,13 @@ class EditShipper extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+
+    protected function getSavedNotification(): ?Notification
+    {
+        return Notification::make()
+        ->success()
+        ->title('Shipper update')
+        ->body('The Shipper update successfuly');
     }
 }
