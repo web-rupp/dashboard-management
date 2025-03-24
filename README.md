@@ -1,66 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+#### Project Dashboard - Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a dashboard management system built using Laravel with Filament. It provides an interface for managing Products, Categories, Orders, Employees, Customers, Shippers, and Suppliers.
 
-## About Laravel
+#### Technologies Used
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Laravel**: PHP framework used for the backend.
+- **Filament**: Admin panel package for Laravel that simplifies creating an intuitive and elegant dashboard interface.
+- **MySQL**: Database management system.
+- **Blade**: Laravel’s templating engine for rendering views.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Installation Guide
+#### 1. Clone the repository
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Clone the project from your version control system:
 
-## Learning Laravel
+```bash
+https://github.com/web-rupp/dashboard-management.git
+cd dashboard-management
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### 2. Set up environment file
+Copy .env.example to .env and configure your database settings:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+cp .env.example .env
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Edit .env to set up your database connection, and any other necessary environment variables.
 
-## Laravel Sponsors
+#### 3. Install dependencies
+Run the following command to install the required PHP and JavaScript dependencies:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+npm install
+```
 
-### Premium Partners
+#### 4. Run migrations
+Run the database migrations to set up the necessary tables:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+php artisan migrate
+```
 
-## Contributing
+#### 5. Serve the application
+Start the Laravel development server:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan serve
+```
 
-## Code of Conduct
+Your application should now be running at http://localhost:8000.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Admin Dashboard (Filament)
+Filament provides an easy-to-use admin panel interface. The dashboard allows the management of the following entities:
 
-## Security Vulnerabilities
+#### Product Management
+- CRUD Operations: Add, update, and delete products.
+- Fields: Name, Description, Price, Category, Stock Quantity, and Image.
+- Relations: Products are related to categories.
+- Search & Filters: Search products by name or category.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Category Management
+- CRUD Operations: Add, update, and delete categories.
+- Fields: Name, Description.
+- Relation: Categories are related to products.
 
-## License
+#### Order Management
+- CRUD Operations: Add, update, and delete orders.
+- Fields: Order ID, Customer, Shipper, Status, Product, Quantity, Total Price, Order Date.
+- Relations: Orders are related to products, customers, and shippers.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Employee Management
+- CRUD Operations: Add, update, and delete employees.
+- Fields: Name, Job Title, Email, Phone Number, Address.
+- Relations: Employees can be associated with orders.
+
+#### Customer Management
+- CRUD Operations: Add, update, and delete customers.
+- Fields: Name, Email, Phone Number, Address.
+- Relations: Customers are associated with orders.
+
+#### Shipper Management
+- CRUD Operations: Add, update, and delete shippers.
+- Fields: Name, Contact Info, Address, Shipping Method.
+- Relations: Shippers are related to orders.
+
+#### Supplier Management
+- CRUD Operations: Add, update, and delete suppliers.
+- Fields: Name, Contact Info, Address, Product Supplied.
+- Relations: Suppliers provide products to the system.
+
+#### Database Schema
+The following are the core tables used in the system:
+- products: Stores product details (name, description, price, stock, etc.).
+- categories: Stores product categories (name, description).
+- orders: Stores order details (order_id, customer_id, shipper_id, total_price, status).
+- employees: Stores employee information (name, email, job title).
+- customers: Stores customer information (name, email, phone).
+- shippers: Stores shipper information (name, contact details).
+- suppliers: Stores supplier information (name, contact details).
+
+#### User Roles & Permissions
+Filament provides an easy way to manage user roles and permissions:
+- Admin: Full access to all resources (CRUD operations on products, categories, orders, etc.).
+- Manager: Limited access, can manage orders and products but cannot access system settings or employees.
+- Employee: Read-only access to orders and customers.
+
+

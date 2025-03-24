@@ -14,6 +14,11 @@ return [
     |
     */
 
+    'auth' => [
+        'guard' => 'web',
+        'user_model' => App\Models\User::class,
+    ],
+
     'broadcasting' => [
 
         // 'echo' => [

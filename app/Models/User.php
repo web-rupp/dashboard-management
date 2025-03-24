@@ -7,42 +7,46 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
-{
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+class User extends Authenticatable implements FilamentUser, HasName
+{
+    use Notifiable;
+
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function canAccessPanel(Panel $panel): bool 
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        // allow access to all user , simply return true
+        return true;
+        // Or restrict to a specific user type, e.g. admin:
+        // return $this->is_admin === 1;
+    }
+
+    // create a new panel object
+    public function canAccessFilament(): bool
+    {
+        $panel = new Panel();
+        return $this->canAccessPanel($panel);
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->name;
     }
 }
