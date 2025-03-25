@@ -86,6 +86,7 @@ use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 
+
 class ProductChart extends ChartWidget
 {
     protected static ?string $heading = 'Customers';
