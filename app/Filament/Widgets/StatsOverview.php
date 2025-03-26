@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Customer;
 use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -11,9 +12,7 @@ class StatsOverview extends BaseWidget
 {
     protected static ?string $pollingInterval = '10s';
 
-    protected ?string $heading = 'Analytics';
 
-    protected ?string $description = 'An overview of some analytics.';
 
     protected static ?int $sort = 2;
     protected function getStats(): array
@@ -48,6 +47,14 @@ class StatsOverview extends BaseWidget
         $revenueIncrease = $this->calculateIncrease($totalRevenue, $previousTotalRevenue);
         $averageOrderValueIncrease = $this->calculateIncrease($averageOrderValue, $previousAverageOrderValue);
 
+        /*
+         * ------------------------------------------------
+         *              Total customers
+         * */
+        $totalCustomers = Customer::count();
+        $totalCustomersIncrease = Customer::whereBetween('created_at', [$currentPeriodStart, $currentPeriodEnd])->count();
+
+
 
 
         return [
@@ -60,8 +67,8 @@ class StatsOverview extends BaseWidget
                 ->description("{$revenueIncrease}% increase")
                 ->descriptionIcon($totalRevenue > $previousTotalRevenue ? 'heroicon-m-arrow-trending-up' : 'heroicon-m-arrow-trending-down')
                 ->color($totalRevenue > $previousTotalRevenue ? 'success' : 'danger'),
-            Stat::make('Average Order Value', number_format($averageOrderValue, 2))
-                ->description("{$averageOrderValueIncrease}% increase")
+            Stat::make('Total Customers', $totalCustomers)
+                ->description("{$totalCustomersIncrease}% increase")
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->color('success'),
             Stat::make('Pending Orders', $pendingOrder)

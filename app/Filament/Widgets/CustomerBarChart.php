@@ -2,30 +2,31 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Customer;
 use Filament\Widgets\ChartWidget;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 
-class UsersBarChart extends ChartWidget
+class CustomerBarChart extends ChartWidget
 {
-    protected static ?string $heading = 'Users Growth';
-    protected static ?int $sort = 3;
+    protected static ?string $heading = 'Customers Growth';
+    protected static ?int $sort = 5;
 
     protected function getData(): array
     {
         $months = collect(range(1, 12))->map(fn($month) => Carbon::create()->month($month)->format('F'));
 
-        $userCounts = collect(range(1, 12))->map(fn($month) => User::whereMonth('created_at', $month)->count());
+        $customerCounts = collect(range(1, 12))->map(fn($month) => Customer::whereMonth('created_at', $month)->count());
 
         \Log::info('Months:', $months->toArray());
-        \Log::info('User Counts:', $userCounts->toArray());
+        \Log::info('Customers Counts:', $customerCounts->toArray());
 
         return [
             'labels' => $months,
             'datasets' => [
                 [
-                    'label' => 'New Users',
-                    'data' => $userCounts,
+                    'label' => 'New Customers',
+                    'data' => $customerCounts,
                     'backgroundColor' => '#36A2EB',
                     'borderColor' => '#1E88E5',
                     'borderWidth' => 1,
