@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>
-    Weclome my dashboard 
-  </h1>
-  <a href="/admin">Click</a>
-</body>
-</html>
+@extends('layout.layout')
+@section('title','Leading Page')
+
+@section('content')
+<section class="text-center">
+  <h1 class="text-[32px] font-semibold">Customize your management experience for efficiency .</h1>
+  <p class="text-xl font-semibold">Simplify your day with task sorting , tagging, and prioritization </p>
+</section>
+@endsection
