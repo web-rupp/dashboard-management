@@ -437,7 +437,7 @@
                 </div>
             </div>
 
-            <div class="w-full grid grid-cols-4 gap-5">
+            <div class="w-full grid grid-cols-4 gap-5 mb-20">
                 <!-- FAQ 1 -->
                 <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2 row-span-2" data-aos="fade-up" data-aos-delay="200">
                     <div class="space-y-5">
