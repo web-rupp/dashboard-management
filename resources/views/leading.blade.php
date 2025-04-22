@@ -9,6 +9,9 @@
     {{-- Font Awesome --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet">
 
+    {{-- AOS CSS --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet"/>
@@ -36,10 +39,25 @@
 
     {{-- Banner section --}}
     <section class="w-full">
-        <section class="w-full h-[800px] bg-[#f9f9f9]"
+        <section class="w-full h-[700px] bg-[#f9f9f9]"
                  style="background-image: url('/images/hero-banner.png');
                  background-size: cover;
                  background-position: center;">
+
+            <div class=" container mx-auto pt-40 h-full space-y-3">
+                <p class="text-sm text-green-600 uppercase"></p>
+                <h1 class="text-5xl font-bold ">Smart Solutions For</h1>
+                <h1 class="text-5xl font-bold "> Dashboard Management</h1>
+                <p class=" text-base text-gray-400 w-[620px]">Access critical patient data, and enhance collaboration
+                    among your healthcare team effortlessly.</p>
+                <div class=" w-[40%] flex gap-5 mt-10">
+                    <input
+                        class="block w-full bg-white text-lg rounded-md shadow-sm p-3"
+                        placeholder="Enter your phone number"/>
+                    <button class=" text-white bg-blue-600 rounded-md w-[200px]">GET START</button>
+
+                </div>
+            </div>
         </section>
     </section>
 
@@ -47,14 +65,14 @@
     <section class="w-full">
         <section class="container mx-auto flex flex-col items-center justify-center py-10 space-y-10">
             <div class="w-full flex flex-col gap-10">
-                <div class="w-[55%] flex flex-col items-start pl-5 justify-center">
+                <div class="w-[55%] flex flex-col items-start pl-5 justify-center" data-aos="fade-up">
                     <p class="text-sm text-green-600 uppercase">Our Key Features</p>
                     <div class="relative flex gap-2">
                         <hr class="absolute top-[48px] left-[-35px] w-[80px] h-1 bg-black rounded-full rotate-90"/>
                         <h1 class="text-5xl font-bold pl-8">Streamline Your Business Management</h1>
                     </div>
                 </div>
-                <div class="w-[60%] flex justify-end">
+                <div class="w-[60%] flex justify-end" data-aos="fade-up" data-aos-delay="100">
                     <p class="text-lg text-gray-400 pl-5">
                         Our platform empowers businesses with intuitive tools to manage dashboards, employees, and
                         product categories, enhancing efficiency and productivity.
@@ -63,7 +81,7 @@
             </div>
 
             <div class="w-full flex gap-10 justify-center">
-                <div class="bg-[#f9f9f9] w-full rounded-[10px] flex flex-col p-10 space-y-5 shadow-md hover:bg-blue-50">
+                <div class="bg-[#f9f9f9] w-full rounded-[10px] flex flex-col p-10 space-y-5 shadow-md hover:bg-blue-50" data-aos="fade-up" data-aos-delay="200">
                     <div
                         class="w-[54px] h-[54px] flex items-center justify-center rounded-[5px] bg-blue-100 text-blue-900">
                         <i class="fa-solid fa-chart-line text-3xl"></i>
@@ -83,7 +101,7 @@
                     </p>
                 </div>
 
-                <div class="bg-[#f9f9f9] w-full rounded-[10px] flex flex-col p-10 space-y-5 shadow-md hover:bg-blue-50">
+                <div class="bg-[#f9f9f9] w-full rounded-[10px] flex flex-col p-10 space-y-5 shadow-md hover:bg-blue-50" data-aos="fade-up" data-aos-delay="300">
                     <div
                         class="w-[54px] h-[54px] flex items-center justify-center rounded-[5px] bg-blue-100 text-blue-900">
                         <i class="fa-solid fa-user text-3xl"></i>
@@ -102,7 +120,7 @@
                     </p>
                 </div>
 
-                <div class="bg-[#f9f9f9] w-full rounded-[10px] flex flex-col p-10 space-y-5 shadow-md hover:bg-blue-50">
+                <div class="bg-[#f9f9f9] w-full rounded-[10px] flex flex-col p-10 space-y-5 shadow-md hover:bg-blue-50" data-aos="fade-up" data-aos-delay="400">
                     <div
                         class="w-[54px] h-[54px] flex items-center justify-center rounded-[5px] bg-blue-100 text-blue-900">
                         <i class="fa-solid fa-boxes-stacked text-3xl"></i>
@@ -121,7 +139,7 @@
                     </p>
                 </div>
 
-                <div class="bg-[#f9f9f9] w-full rounded-[10px] flex flex-col p-10 space-y-5 shadow-md hover:bg-blue-50">
+                <div class="bg-[#f9f9f9] w-full rounded-[10px] flex flex-col p-10 space-y-5 shadow-md hover:bg-blue-50" data-aos="fade-up" data-aos-delay="500">
                     <div
                         class="w-[54px] h-[54px] flex items-center justify-center rounded-[5px] bg-blue-100 text-blue-900">
                         <i class="fa-solid fa-plug text-3xl"></i>
@@ -147,12 +165,12 @@
     {{-- Why Choose Section --}}
     <section class="w-full">
         <section class="container mx-auto flex justify-center gap-10 py-10 space-y-10">
-            <div class="w-full min-h-[200px]">
+            <div class="w-full min-h-[200px]" data-aos="fade-right">
                 <img src="/images/destop-landing.png" alt="dashboard preview"
                      class="w-[600px] h-full object-cover object-center rounded-[10px]"/>
             </div>
 
-            <div class="w-full flex flex-col gap-10">
+            <div class="w-full flex flex-col gap-10" data-aos="fade-left">
                 <div class="w-full flex flex-col items-start pl-5 justify-center">
                     <p class="text-sm text-green-600 uppercase">Why Choose Us?</p>
                     <div class="relative flex gap-2">
@@ -170,28 +188,28 @@
         </section>
         <section class="container mx-auto">
             <div class="grid grid-cols-4 gap-10">
-                <div class="w-full h-[80px] bg-[#f9f9f9] rounded-[10px]">
+                <div class="w-full h-[80px] bg-[#f9f9f9] rounded-[10px]" data-aos="zoom-in" data-aos-delay="100">
                     <div class="w-full h-full flex items-center justify-center gap-3">
                         <i class="fa-solid fa-circle-check text-blue-600"></i>
                         <h1 class="text-lg text-black font-medium">Real-Time Analytics</h1>
                     </div>
                 </div>
 
-                <div class="w-full h-[80px] bg-[#f9f9f9] rounded-[10px]">
+                <div class="w-full h-[80px] bg-[#f9f9f9] rounded-[10px]" data-aos="zoom-in" data-aos-delay="200">
                     <div class="w-full h-full flex items-center justify-center gap-3">
                         <i class="fa-solid fa-circle-check text-blue-600"></i>
                         <h1 class="text-lg text-black font-medium">Employee Scheduling</h1>
                     </div>
                 </div>
 
-                <div class="w-full h-[80px] bg-[#f9f9f9] rounded-[10px]">
+                <div class="w-full h-[80px] bg-[#f9f9f9] rounded-[10px]" data-aos="zoom-in" data-aos-delay="300">
                     <div class="w-full h-full flex items-center justify-center gap-3">
                         <i class="fa-solid fa-circle-check text-blue-600"></i>
                         <h1 class="text-lg text-black font-medium">Inventory Management</h1>
                     </div>
                 </div>
 
-                <div class="w-full h-[80px] bg-[#f9f9f9] rounded-[10px]">
+                <div class="w-full h-[80px] bg-[#f9f9f9] rounded-[10px]" data-aos="zoom-in" data-aos-delay="400">
                     <div class="w-full h-full flex items-center justify-center gap-3">
                         <i class="fa-solid fa-circle-check text-blue-600"></i>
                         <h1 class="text-lg text-black font-medium">Customizable Interface</h1>
@@ -205,14 +223,14 @@
     <section class="w-full">
         <section class="container mx-auto flex flex-col items-center justify-center py-10 space-y-10">
             <div class="w-full flex flex-col gap-10">
-                <div class="w-[55%] flex flex-col items-start pl-5 justify-center">
+                <div class="w-[55%] flex flex-col items-start pl-5 justify-center" data-aos="fade-up">
                     <p class="text-sm text-green-600 uppercase">Our Customers</p>
                     <div class="relative flex gap-2">
                         <hr class="absolute top-[24px] left-[-15px] w-[40px] h-1 bg-black rounded-full rotate-90"/>
                         <h1 class="text-5xl font-bold pl-8">What Our Customers Say</h1>
                     </div>
                 </div>
-                <div class="w-[60%] flex justify-end">
+                <div class="w-[60%] flex justify-end" data-aos="fade-up" data-aos-delay="100">
                     <p class="text-lg text-gray-400 pl-5">
                         Hear from business owners and managers who trust our platform to streamline their operations and
                         boost productivity.
@@ -222,10 +240,12 @@
 
             <div class="w-full grid grid-cols-6 gap-10">
                 <!-- Testimonial 1 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2" data-aos="fade-up" data-aos-delay="200">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center">
-                            <div class="h-14 w-14 rounded-full bg-blue-900"></div>
+                            <div class="h-14 w-14 rounded-full ">
+                                <img src="/images/place-holder.png" class=" w-full"/>
+                            </div>
                             <div class="flex flex-col">
                                 <h1 class="text-xl uppercase font-semibold">Sarah Lim</h1>
                                 <p class="text-gray-500 text-sm font-medium">Business Owner, Singapore</p>
@@ -239,10 +259,12 @@
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2" data-aos="fade-up" data-aos-delay="300">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center">
-                            <div class="h-14 w-14 rounded-full bg-blue-900"></div>
+                            <div class="h-14 w-14 rounded-full ">
+                                <img src="/images/place-holder.png" class=" w-full"/>
+                            </div>
                             <div class="flex flex-col">
                                 <h1 class="text-xl uppercase font-semibold">Michael Chen</h1>
                                 <p class="text-gray-500 text-sm font-medium">Operations Manager, Kuala Lumpur,
@@ -256,10 +278,12 @@
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2" data-aos="fade-up" data-aos-delay="400">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center">
-                            <div class="h-14 w-14 rounded-full bg-blue-900"></div>
+                            <div class="h-14 w-14 rounded-full ">
+                                <img src="/images/place-holder.png" class=" w-full"/>
+                            </div>
                             <div class="flex flex-col">
                                 <h1 class="text-xl uppercase font-semibold">Priya Sharma</h1>
                                 <p class="text-gray-500 text-sm font-medium">Retail Manager, Mumbai, India</p>
@@ -272,10 +296,12 @@
                 </div>
 
                 <!-- Testimonial 4 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2 col-start-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2 col-start-2" data-aos="fade-up" data-aos-delay="500">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center">
-                            <div class="h-14 w-14 rounded-full bg-blue-900"></div>
+                            <div class="h-14 w-14 rounded-full ">
+                                <img src="/images/place-holder.png" class=" w-full"/>
+                            </div>
                             <div class="flex flex-col">
                                 <h1 class="text-xl uppercase font-semibold">Emma Nguyen</h1>
                                 <p class="text-gray-500 text-sm font-medium">Team Lead, Ho Chi Minh City, Vietnam</p>
@@ -288,10 +314,12 @@
                 </div>
 
                 <!-- Testimonial 5 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] p-10 col-span-2" data-aos="fade-up" data-aos-delay="600">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center">
-                            <div class="h-14 w-14 rounded-full bg-blue-900"></div>
+                            <div class="h-14 w-14 rounded-full ">
+                                <img src="/images/place-holder.png" class=" w-full"/>
+                            </div>
                             <div class="flex flex-col">
                                 <h1 class="text-xl uppercase font-semibold">John Torres</h1>
                                 <p class="text-gray-500 text-sm font-medium">Business Manager, Manila, Philippines</p>
@@ -309,7 +337,7 @@
     {{-- Contact Section --}}
     <section class="w-full">
         <section class="container mx-auto flex justify-center gap-10 py-10 space-y-10">
-            <div class="w-full flex justify-start items-start">
+            <div class="w-full flex justify-start items-start" data-aos="fade-right">
                 <div class="flex flex-col bg-[#f9f9f9] w-[80%] h-full rounded-[10px] shadow-md p-10 gap-7">
                     <div class="space-y-2">
                         <label class="block text-base font-medium text-gray-700">Username</label>
@@ -349,7 +377,7 @@
                 </div>
             </div>
 
-            <div class="w-full flex flex-col gap-10">
+            <div class="w-full flex flex-col gap-10" data-aos="fade-left">
                 <div class="w-full flex flex-col items-start pl-5 justify-center">
                     <p class="text-sm text-green-600 uppercase">Get in Touch</p>
                     <div class="relative flex gap-2">
@@ -394,14 +422,14 @@
     <section class="w-full">
         <section class="container mx-auto flex flex-col items-center justify-center py-10 space-y-10">
             <div class="w-full flex flex-col gap-10">
-                <div class="w-[55%] flex flex-col items-start pl-5 justify-center">
+                <div class="w-[55%] flex flex-col items-start pl-5 justify-center" data-aos="fade-up">
                     <p class="text-sm text-green-600 uppercase">Your Questions Answered</p>
                     <div class="relative flex gap-2">
                         <hr class="absolute top-[24px] left-[-15px] w-[40px] h-1 bg-black rounded-full rotate-90"/>
                         <h1 class="text-5xl font-bold pl-8">Frequently Asked Questions</h1>
                     </div>
                 </div>
-                <div class="w-[60%] flex justify-end">
+                <div class="w-[60%] flex justify-end" data-aos="fade-up" data-aos-delay="100">
                     <p class="text-lg text-gray-400 pl-5">
                         Find quick answers to common questions about our management platform’s features and
                         functionality.
@@ -411,7 +439,7 @@
 
             <div class="w-full grid grid-cols-4 gap-5">
                 <!-- FAQ 1 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2 row-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2 row-span-2" data-aos="fade-up" data-aos-delay="200">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center justify-between">
                             <h1 class="text-lg font-medium">How does the dashboard streamline operations?</h1>
@@ -427,7 +455,7 @@
                 </div>
 
                 <!-- FAQ 2 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2" data-aos="fade-up" data-aos-delay="300">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center justify-between">
                             <h1 class="text-lg font-medium">What makes employee management easier?</h1>
@@ -439,7 +467,7 @@
                 </div>
 
                 <!-- FAQ 3 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2" data-aos="fade-up" data-aos-delay="400">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center justify-between">
                             <h1 class="text-lg font-medium">How does it simplify product category organization?</h1>
@@ -451,7 +479,7 @@
                 </div>
 
                 <!-- FAQ 4 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2" data-aos="fade-up" data-aos-delay="500">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center justify-between">
                             <h1 class="text-lg font-medium">Can the platform integrate with other tools?</h1>
@@ -463,7 +491,7 @@
                 </div>
 
                 <!-- FAQ 5 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2" data-aos="fade-up" data-aos-delay="600">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center justify-between">
                             <h1 class="text-lg font-medium">How does the dashboard improve decision-making?</h1>
@@ -475,7 +503,7 @@
                 </div>
 
                 <!-- FAQ 6 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2" data-aos="fade-up" data-aos-delay="700">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center justify-between">
                             <h1 class="text-lg font-medium">Is managing product data secure and reliable?</h1>
@@ -487,7 +515,7 @@
                 </div>
 
                 <!-- FAQ 7 -->
-                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2">
+                <div class="w-full bg-[#f9f9f9] rounded-[10px] px-10 py-5 col-span-2" data-aos="fade-up" data-aos-delay="800">
                     <div class="space-y-5">
                         <div class="flex gap-5 items-center justify-between">
                             <h1 class="text-lg font-medium">Why is this platform ideal for team management?</h1>
@@ -502,6 +530,12 @@
     </section>
 
 </main>
+
+{{-- AOS JS --}}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 
 </body>
 </html>
