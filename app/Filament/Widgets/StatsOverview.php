@@ -12,8 +12,6 @@ class StatsOverview extends BaseWidget
 {
     protected static ?string $pollingInterval = '10s';
 
-
-
     protected static ?int $sort = 2;
     protected function getStats(): array
     {
@@ -53,9 +51,6 @@ class StatsOverview extends BaseWidget
          * */
         $totalCustomers = Customer::count();
         $totalCustomersIncrease = Customer::whereBetween('created_at', [$currentPeriodStart, $currentPeriodEnd])->count();
-
-
-
 
         return [
             Stat::make('Total Orders', $totalOrders)

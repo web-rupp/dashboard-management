@@ -18,9 +18,6 @@ class CustomerBarChart extends ChartWidget
 
         $customerCounts = collect(range(1, 12))->map(fn($month) => Customer::whereMonth('created_at', $month)->count());
 
-        \Log::info('Months:', $months->toArray());
-        \Log::info('Customers Counts:', $customerCounts->toArray());
-
         return [
             'labels' => $months,
             'datasets' => [

@@ -61,6 +61,7 @@ class OrderResource extends Resource
                                 'cancelled' => 'Cancelled',
                             ])
                             ->default('pending')
+                            ->searchable()
                             ->required(),
                         Forms\Components\TextInput::make('total_amount')
                             ->numeric()
