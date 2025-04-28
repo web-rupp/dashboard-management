@@ -20,8 +20,9 @@ class OrderDetailsRelationManager extends RelationManager
             ->schema([
                 Forms\Components\Select::make('product_id')
                     ->relationship('product', 'name')
-                    ->required()
-                    ->searchable(),
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('unit_price')
                     ->required()
                     ->numeric()

@@ -31,10 +31,7 @@ class CustomerResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Information Customer')
                     ->schema([
-                        Forms\Components\TextInput::make('first_name')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('last_name')
+                        Forms\Components\TextInput::make('customer_name')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('email')
@@ -63,9 +60,7 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('first_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('last_name')
+                Tables\Columns\TextColumn::make('customer_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),

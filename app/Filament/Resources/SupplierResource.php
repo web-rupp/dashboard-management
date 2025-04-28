@@ -74,6 +74,8 @@ class SupplierResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('country')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('website')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

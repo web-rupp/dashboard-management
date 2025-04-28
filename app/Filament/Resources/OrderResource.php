@@ -30,12 +30,12 @@ class OrderResource extends Resource
                 Forms\Components\Section::make('Create Order')
                     ->schema([
                         Forms\Components\Select::make('customer_id')
-                            ->relationship('customer', 'email')
+                            ->relationship('customer', 'customer_name')
                             ->searchable()
                             ->preload()
                             ->required(),
                         Forms\Components\Select::make('employee_id')
-                            ->relationship('employee', 'email')
+                            ->relationship('employee', 'employee_name')
                             ->searchable()
                             ->preload()
                             ->required(),
@@ -78,8 +78,8 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('customer.name')
-                    ->getStateUsing(fn(Order $record): string => "{$record->customer->first_name} {$record->customer->last_name}")
-                    ->searchable(['customer.first_name', 'customer.last_name']),
+                    ->getStateUsing(fn(Order $record): string => "{$record->customer->customer_name}")
+                    ->searchable(['customer.customer_name']),
                 Tables\Columns\TextColumn::make('order_date')
                     ->dateTime()
                     ->sortable(),

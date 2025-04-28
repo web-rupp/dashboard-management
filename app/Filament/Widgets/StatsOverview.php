@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Widgets;
 
 use App\Models\Customer;
@@ -17,37 +16,32 @@ class StatsOverview extends BaseWidget
     {
         /*
          * ------------------------------------------------
-         *              This month's period
+         * This month's period
          * */
         $currentPeriodStart = Carbon::now()->startOfMonth();
         $currentPeriodEnd = Carbon::now();
 
         /*
          * ------------------------------------------------
-         *              Last month's period
+         * Last month's period
          * */
         $previousPeriodStart = Carbon::now()->subMonth()->startOfMonth();
         $previousPeriodEnd = Carbon::now()->subMonth()->endOfMonth();
 
         /*
          * ------------------------------------------------
-         *              Total orders
+         * Total orders
          * */
         $totalOrders = Order::whereBetween('created_at', [$currentPeriodStart, $currentPeriodEnd])->count();
         $previousTotalOrders = Order::whereBetween('created_at', [$previousPeriodStart, $previousPeriodEnd])->count();
         $orderIncrease = $this->calculateIncrease($totalOrders, $previousTotalOrders);
         $totalRevenue = Order::whereBetween('created_at', [$currentPeriodStart, $currentPeriodEnd])->sum('total_amount');
         $previousTotalRevenue = Order::whereBetween('created_at', [$previousPeriodStart, $previousPeriodEnd])->sum('total_amount');
-        $averageOrderValue = $totalOrders > 0 ? $totalRevenue / $totalOrders : 0;
-        $previousAverageOrderValue = $previousTotalOrders > 0 ? $previousTotalRevenue / $previousTotalOrders : 0;
         $pendingOrder = Order::where('status', 'pending')->count();
-        $completedOrder = Order::where('status', 'completed')->count();
         $revenueIncrease = $this->calculateIncrease($totalRevenue, $previousTotalRevenue);
-        $averageOrderValueIncrease = $this->calculateIncrease($averageOrderValue, $previousAverageOrderValue);
-
         /*
          * ------------------------------------------------
-         *              Total customers
+         * Total customers
          * */
         $totalCustomers = Customer::count();
         $totalCustomersIncrease = Customer::whereBetween('created_at', [$currentPeriodStart, $currentPeriodEnd])->count();
@@ -59,7 +53,7 @@ class StatsOverview extends BaseWidget
                 ->chart($this->getOrderChartData())
                 ->color('success'),
             Stat::make('Total Revenue', '$'. number_format($totalRevenue, 2))
-                ->description("{$revenueIncrease}% increase")
+                ->description("{$revenueIncrease}% " . ($totalRevenue > $previousTotalRevenue ? 'increase' : 'decrease'))
                 ->descriptionIcon($totalRevenue > $previousTotalRevenue ? 'heroicon-m-arrow-trending-up' : 'heroicon-m-arrow-trending-down')
                 ->color($totalRevenue > $previousTotalRevenue ? 'success' : 'danger'),
             Stat::make('Total Customers', $totalCustomers)
@@ -70,7 +64,7 @@ class StatsOverview extends BaseWidget
                 ->description("{$pendingOrder} pending")
                 ->descriptionIcon('heroicon-m-clock')
                 ->color('warning'),
-            ];
+        ];
     }
 
     protected function calculateIncrease($current, $previous): float

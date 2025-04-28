@@ -22,8 +22,8 @@ class Orders extends BaseWidget
                 Tables\Columns\TextColumn::make('id')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('customer.name')
-                    ->getStateUsing(fn(Order $record): string => "{$record->customer->first_name} {$record->customer->last_name}")
-                    ->searchable(['customer.first_name', 'customer.last_name']),
+                    ->getStateUsing(fn(Order $record): string => "{$record->customer->customer_name}")
+                    ->searchable(['customer.customer_name']),
                 Tables\Columns\TextColumn::make('order_date')
                     ->dateTime()
                     ->sortable(),
